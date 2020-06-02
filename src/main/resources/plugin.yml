@@ -1,0 +1,8 @@
+name: aMaxPlayers
+author: amit177
+version: 1.0
+description: A plugin that changes the max players
+main: systems.amit.spigot.amaxplayers.aMaxPlayers
+commands:
+  amaxplayers:
+    aliases: [maxplayers]
