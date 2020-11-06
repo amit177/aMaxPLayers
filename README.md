@@ -1,6 +1,8 @@
 # aMaxPLayers
 A spigot plugin that allows you to change the player limit without restarting
 
+Latest version: v1.1
+
 Command: `/amaxplayers` (or `/maxplayers`)
 
 Permissions:
@@ -12,4 +14,5 @@ Config:
 ```
 max-players: 20
 no-perm: "&cNo access"
+kick-msg "&cThe server is currently full!"
 ```
