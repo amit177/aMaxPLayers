@@ -33,7 +33,7 @@ public class aMaxPlayers extends JavaPlugin implements Listener {
         getCommand("amaxplayers").setExecutor(new Cmd_amaxplayers());
         Bukkit.getPluginManager().registerEvents(this, this);
         new Metrics(this, 7717);
-        getLogger().info("The plugin has been enabled");
+        getLogger().info("The plugin has been enabled v" + getDescription().getVersion());
     }
 
     @Override
@@ -44,7 +44,7 @@ public class aMaxPlayers extends JavaPlugin implements Listener {
 
     private boolean loadConfig() {
         saveDefaultConfig();
-        
+
         if (!getConfig().contains("max-players")) {
             getLogger().severe("The config is missing the 'max-players' field");
             return false;
