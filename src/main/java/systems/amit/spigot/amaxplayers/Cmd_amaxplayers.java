@@ -34,7 +34,7 @@ public class Cmd_amaxplayers implements CommandExecutor {
         }
 
         aMaxPlayers.getInstance().maxPlayers = newMax;
-        aMaxPlayers.getInstance().getConfig().set(aMaxPlayers.getInstance().CONFIG_MAXPLAYERS, newMax);
+        aMaxPlayers.getInstance().getConfig().set("max-players", newMax);
         aMaxPlayers.getInstance().saveConfig();
         sender.sendMessage(ChatColor.GREEN + "The value has been updated to " + newMax);
         return false;

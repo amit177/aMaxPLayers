@@ -13,9 +13,9 @@ public class aMaxPlayers extends JavaPlugin implements Listener {
 
     public final String ADMIN_PERM = "amaxplayers.admin";
     public final String BYPASS_PERM = "amaxplayers.bypass";
-    public final String CONFIG_MAXPLAYERS = "max-players";
     public int maxPlayers;
     public String noPerm;
+    public String kickMsg;
 
     private static aMaxPlayers instance;
     public static aMaxPlayers getInstance() {
@@ -44,26 +44,30 @@ public class aMaxPlayers extends JavaPlugin implements Listener {
 
     private boolean loadConfig() {
         saveDefaultConfig();
+        
         if (!getConfig().contains("max-players")) {
             getLogger().severe("The config is missing the 'max-players' field");
             return false;
         }
-        maxPlayers = getConfig().getInt("max-players");
         if (!getConfig().contains("no-perm")) {
             getLogger().severe("The config is missing the 'no-perm' field");
             return false;
         }
+        if (!getConfig().contains("kick-msg")) {
+            getLogger().severe("The config is missing the 'kick-msg' field");
+            return false;
+        }
+
+        maxPlayers = getConfig().getInt("max-players");
         noPerm = ChatColor.translateAlternateColorCodes('&', getConfig().getString("no-perm"));
+        kickMsg = ChatColor.translateAlternateColorCodes('&', getConfig().getString("kick-msg"));
         return true;
     }
 
     @EventHandler
     public void onLogin(PlayerLoginEvent e){
-        if(e.getResult() != PlayerLoginEvent.Result.KICK_FULL){
-            return;
-        }
-        if(Bukkit.getOnlinePlayers().size() < maxPlayers || e.getPlayer().hasPermission(BYPASS_PERM)){
-            e.allow();
+        if(Bukkit.getOnlinePlayers().size() > maxPlayers && e.getPlayer().hasPermission(BYPASS_PERM)){
+            e.disallow(PlayerLoginEvent.Result.KICK_FULL, kickMsg);
         }
     }
 
