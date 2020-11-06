@@ -1,2 +1,3 @@
 max-players: 20
 no-perm: "&cNo access"
+kick-msg: "The server is currently full!"
