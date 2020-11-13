@@ -66,7 +66,7 @@ public class aMaxPlayers extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onLogin(PlayerLoginEvent e){
-        if(e.getResult() != PlayerLoginEvent.Result.KICK_FULL) return;
+        if(e.getResult().name().startsWith("KICK_") && e.getResult() != PlayerLoginEvent.Result.KICK_FULL) return;
         if(Bukkit.getOnlinePlayers().size() > maxPlayers && !e.getPlayer().hasPermission(BYPASS_PERM)){
             e.disallow(PlayerLoginEvent.Result.KICK_FULL, kickMsg);
         }else{
